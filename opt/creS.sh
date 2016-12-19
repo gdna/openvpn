@@ -29,7 +29,7 @@ echo "GDNA génére une clée master Certificate Authority"
 read -p "Indiquer le noms de domaine du future server (ex: gdna.re)   " srv
 read -p "Voulez-vous que GDNA place les fichier a leur place?(Y/N) un non créera une archive dans /etc/openvpn/    " yn
     case $yn in
-        [Yy]* ) cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key /opt/server.conf /etc/openvpn/;;
+        [Yy]* ) cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key server.conf /etc/openvpn/;;
         [Nn]* ) mkdir /etc/openvpn/tgz; cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key /opt/server.conf /etc/openvpn/tgz/;tar -zcvf /etc/openvpn/server.tar.gz /etc/openvpn/tgz/*; rm -rf /etc/openvpn/tgz ;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -40,7 +40,7 @@ echo "Generating keys..."
     
     ./build-key client$c
 mkdir /etc/openvpn/tgz
-cp keys/ca.crt keys/client$c.crt keys/client$c.key /opt/client.conf /etc/openvpn/tgz/;
+cp keys/ca.crt keys/client$c.crt keys/client$c.key client.conf /etc/openvpn/tgz/;
 echo "remote $srv 1194" >> /etc/openvpn/tgz/client.conf;
 echo "cert client$c.crt" >> /etc/openvpn/tgz/client.conf;
 echo "key client$c.key" >> /etc/openvpn/tgz/client.conf;
