@@ -16,7 +16,10 @@ cat <<EOF >lol.txt
 $STRING
 EOF
 cat lol.txt
-
+mkdir -p /dev/net
+if [ ! -c /dev/net/tun ]; then
+    mknod /dev/net/tun c 10 200
+fi
 cd /my_ca
 chmod g+w .
 . ./vars
@@ -29,7 +32,7 @@ echo "GDNA génére une clée master Certificate Authority"
 read -p "Indiquer le noms de domaine du future server (ex: gdna.re)   " srv
 read -p "Voulez-vous que GDNA place les fichier a leur place?(Y/N) un non créera une archive dans /etc/openvpn/    " yn
     case $yn in
-        [Yy]* ) cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key server.conf /etc/openvpn/;;
+        [Yy]* ) cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key server.conf /etc/openvpn/; service openvpn start;;
         [Nn]* ) mkdir /etc/openvpn/tgz; cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key /opt/server.conf /etc/openvpn/tgz/;tar -zcvf /etc/openvpn/server.tar.gz /etc/openvpn/tgz/*; rm -rf /etc/openvpn/tgz ;;
         * ) echo "Please answer yes or no.";;
     esac

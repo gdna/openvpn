@@ -6,7 +6,7 @@ docker build -t openvpn .
 
 3. Run the docker:
 
-docker run -p 1194:1194 -v /root/dockervpn/openvpndir:/etc/openvpn -dit openvpn
+docker run -p 1194:1194 --cap-add NET_ADMIN --name gdnavpn -v /root/openvpndir:/etc/openvpn -dit openvpn
 
 4. you must run GDNA script and follow the leader
 
