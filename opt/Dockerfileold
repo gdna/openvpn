@@ -1,0 +1,12 @@
+FROM ubuntu
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN apt-get update -y 
+RUN apt-get install -y openvpn easy-rsa wget --fix-missing
+RUN make-cadir my_ca
+RUN cd /my_ca
+RUN cd /my_ca && rm vars
+RUN ls
+RUN cd /my_ca && wget https://www.gdna.re/vars
+RUN cd /my_ca && source ./vars && . ./vars && ./clean-all && ./build-ca --batch && ./build-key-server server --batch && ./build-key client1 --batch && ./build-key client2 --batch && ./build-key client3 --batch && ./build-key client4 --batch && ./build-key client5 --batch && ./build-dh --batch
+RUN cd /my_ca && cp keys/dh*.pem keys/ca.crt keys/server.crt keys/server.key /etc/openvpn/
+RUN zcat /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz > /etc/openvpn/server.conf
