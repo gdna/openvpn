@@ -2,10 +2,10 @@
 
 welcome this is GDNA simple openvpn for docker.
 
-1.  first git clone this repo
-2.  you have to build the image :
-3.  Run the docker:
-4.  you must run GDNA script and follow the leader
+1.  first git clone this repo.
+2.  you have to build the image. 
+3.  Run the docker.
+4.  you must run GDNA script and follow the leader.
 
 ```
 docker build -t openvpn .
