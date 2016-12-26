@@ -8,18 +8,18 @@ welcome this is GDNA simple openvpn for docker.
 4.  you must run GDNA script and follow the leader
 
 ```
-**docker build -t openvpn .**
+docker build -t openvpn .
 ```
 
 ```
-**docker run -p 1194:1194 --cap-add NET_ADMIN --name gdnavpn -v /root/openvpndir:/etc/openvpn -dit openvpn**
+docker run -p 1194:1194 --cap-add NET_ADMIN --name gdnavpn -v /root/openvpndir:/etc/openvpn -dit openvpn
 ```
 
 ```
-**docker exec -it gdnavpn ./my_ca/creS.sh**
+docker exec -it gdnavpn ./my_ca/creS.sh
 ```
 
 thats it!
-you can find config/key/cert  for cli in openvpndir flowder.
+you can find config/key/cert  for cli and serv in openvpndir flowder.
 
 https://www.gdna.re
