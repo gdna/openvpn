@@ -22,4 +22,6 @@ docker exec -it gdnavpn ./my_ca/creS.sh
 thats it!
 you can find config/key/cert  for cli and serv in openvpndir flowder.
 
+For more optimization you can find vars file in the repo, and the config file for cli and serv can be find in opt/ dir.
+
 https://www.gdna.re
